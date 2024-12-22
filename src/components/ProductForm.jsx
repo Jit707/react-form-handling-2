@@ -1,6 +1,38 @@
+import { useState } from "react";
+
 function ProductForm() {
+const [name ,setName]=useState("")
+const [image ,setImage]=useState("")
+const [price ,setPrice]=useState("")
+const [description ,setDescription]=useState("")
+
+function handleName(event) {
+  return setName(event.target.value)
+}
+function handleImage(event) {
+  return setImage(event.target.value)
+}
+function handlePrice(event) {
+  return setPrice(event.target.value)
+}
+function handleDescription(event) {
+  return setDescription(event.target.value)
+}
+
+function handleChang(event) {
+  event.preventDefault()
+  const data={
+    name : name,
+    imageInfo : image,
+    priceInfo : price,
+    descriptionInfo : description
+  }
+  return alert(JSON.stringify(data))
+}
+
+
   return (
-    <form className="post-form">
+    <form onSubmit={handleChang} className="post-form">
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +42,8 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={name}
+            onChange={handleName}
           />
         </label>
       </div>
@@ -22,7 +55,8 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={image}
+            onChange={handleImage}
           />
         </label>
       </div>
@@ -34,7 +68,8 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={price}
+            onChange={handlePrice}
           />
         </label>
       </div>
@@ -46,7 +81,8 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={description}
+            onChange={handleDescription}
             rows={4}
             cols={30}
           />
